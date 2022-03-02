@@ -29,5 +29,5 @@ app.get('/', (req, res) => {
 	res.send("this is index route for endpoints, welcome to your colab project endpoints")
 });
 
-app.listen(PORT);
-console.log('App is running on port:' + PORT);
+// app.listen(PORT);
+// console.log('App is running on port:' + PORT);
