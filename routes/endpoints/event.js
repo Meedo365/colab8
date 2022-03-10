@@ -33,6 +33,17 @@ let routes = (app) => {
             res.status(500).send(err);
         }
     });
+    
+    app.delete('/event/:id', async (req, res) => {
+        try {
+            let eventt = await Eventt.deleteOne({ _id: req.params.id });
+            res.json(eventt);
+            res.send('event deleted')
+        }
+        catch (err) {
+            res.status(500).send(err);
+        }
+    });
 
     app.put("/event/:id", async (req, res) => {
         try {
