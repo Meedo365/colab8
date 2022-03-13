@@ -16,7 +16,9 @@ let routes = (app) => {
 
     app.get("/comments", async (req, res) => {
         try {
-            let comments = await Comment.find();
+            let comments = await Comment.find()
+                .populate("user_id")
+                .populate("event_id")
             res.json(comments)
         }
         catch (err) {
