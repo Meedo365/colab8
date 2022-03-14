@@ -35,6 +35,16 @@ let routes = (app) => {
             res.status(500).send(err)
         }
     });
+    
+     app.delete("/comment/:id", async (req, res) => {
+        try {
+            let comment = await Comment.deleteOne({ _id: req.params.id });
+            res.json(comment)
+        }
+        catch (err) {
+            res.status(500).send(err)
+        }
+    });
 }
 
 module.exports = routes;
