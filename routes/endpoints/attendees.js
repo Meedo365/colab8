@@ -1,8 +1,7 @@
-let Attending = require("../../models/attendees");
+let Attending = require("../../models/attendee");
 
 
 let routes = (app) => {
-    // app.post("/create/comment", async (req, res) => {
     app.post("/attend", async (req, res) => {
         try {
             let attend = new Attending(req.body);
