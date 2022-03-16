@@ -37,7 +37,7 @@ let routes = (app) => {
     
      app.get("/attend/:id", async (req, res) => {
         try {
-            let attend = await Attending.findOne({ _id,user_id};
+            let attend = await Attending.findOne({ _id:req.body});
             res.json(attend)
         }
         catch (err) {
