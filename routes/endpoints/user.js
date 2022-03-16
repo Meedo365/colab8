@@ -59,7 +59,7 @@ let routes = (app) => {
     app.put("/login", async (req, res) => {
         try {
             let { email, password } = req.body;
-            let user = await User.findOne({ email, password });
+            let user = await User.findOneAndUpdate({ email, password });
             if (user == null) {
                 return res.json({ msg: "Invalid email or password" })
             } else {
