@@ -9,6 +9,7 @@ const UserSchema = new mongoose.Schema({
     instagramUrl: { type: String, required: false },
     intrest: { type: String, required: true },
     funFacts: { type: String, required: true },
+    url: { type: String, required: true },
     active: { type: Boolean, default: false }
 },
     { timestamps: true })
