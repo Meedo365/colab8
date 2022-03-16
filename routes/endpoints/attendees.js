@@ -35,6 +35,16 @@ let routes = (app) => {
         }
     });
     
+     app.get("/attend/:id", async (req, res) => {
+        try {
+            let attend = await Attending.findOne({ _id,user_id};
+            res.json(attend)
+        }
+        catch (err) {
+            res.status(500).send(err)
+        }
+    });
+    
      app.delete("/attend/:id", async (req, res) => {
         try {
             let attend = await Attending.deleteOne({ _id: req.params.id });
