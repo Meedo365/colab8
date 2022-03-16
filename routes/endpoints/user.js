@@ -56,7 +56,7 @@ let routes = (app) => {
 //         }
 //     });
 
-    app.post("/login", async (req, res) => {
+    app.put("/login", async (req, res) => {
         try {
             let { email, password } = req.body;
             let user = await User.findOne({ email, password });
