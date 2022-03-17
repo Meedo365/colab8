@@ -60,12 +60,12 @@ let routes = (app) => {
         try {
             let { email, password } = req.body;
             let active = true;
-            let user = await User.findOneAndUpdate({ email, password },active,{new:true});
+            let user = await User.findOneAndUpdate({ email, password });
             if (user == null) {
                 return res.json({ msg: "Invalid email or password" })
             } else {
-//                 user.active = true;
-//                 await user.save()
+                user.active = true;
+                await user.save()
                 res.json(user)
             }
         }
