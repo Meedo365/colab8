@@ -40,7 +40,6 @@ let routes = (app) => {
 
     app.post('/register', async (req, res) => {
         try {
-
             let { fullname, email, password } = new User(req.body);
             let newuser = new User(req.body);
             let check = await User.findOne({ email });
