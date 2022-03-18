@@ -10,8 +10,8 @@ const UserSchema = new mongoose.Schema({
     intrest: { type: String, required: true },
     funFacts: { type: String, required: true },
     url: { type: String, required: true },
-    age: { type: String, required: true },
-    gender: { type: String, required: true },
+//     age: { type: String, required: true },
+//     gender: { type: String, required: true },
     active: { type: Boolean, default: false }
 },
     { timestamps: true })
