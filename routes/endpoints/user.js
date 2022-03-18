@@ -100,7 +100,8 @@ let routes = (app) => {
 
     app.put("/user/:id", async (req, res) => {
         try {
-            let user = await User.findOneAndUpdate({ _id: req.params.id },req.body,{returnOriginal:false});
+            let update={req.body}
+            let user = await User.findOneAndUpdate({ _id: req.params.id },update,{returnOriginal:false});
 //             user.active = false;
 //             await user.save()
             return res.json(user)
