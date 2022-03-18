@@ -1,59 +1,59 @@
 let User = require("../../models/users");
-// const multer = require('multer');
-// const storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//         cb(null, './uploads/')
-//     },
-//     filename: function (req, file, cb) {
-//         cb(null, new Date().getMilliseconds() + file.originalname);
-//     }
-// });
-// const upload = multer({ storage: storage }).single('url');
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, new Date().getMilliseconds() + file.originalname);
+    }
+});
+const upload = multer({ storage: storage }).single('url');
 
 let routes = (app) => {
-//     app.post('/register', async (req, res) => {
-//         upload(req, res, async (err) => {
-//             if (err) {
-//                 console.log(err);
-//             } else {
-//                 if (req.file) {
-//                     req.body.url = '/' + req.file.path;
-//                     try {
-//                         let { fullname, email, password } = new User(req.body);
-//                         let newuser = new User(req.body);
-//                         let check = await User.findOne({ email });
-//                         if (check == null) {
-//                             await newuser.save()
-//                             res.json(newuser);
-//                         } else {
-//                             return res.json({ msg: "Email already Registered" })
-//                         }
-//                     }
-//                     catch (err) {
-//                         res.status(500).send(err);
-//                     }
-//                 }
-//             }
-//         });
-
-//     });
-
     app.post('/register', async (req, res) => {
-        try {
-            let { fullname, email, password } = new User(req.body);
-            let newuser = new User(req.body);
-            let check = await User.findOne({ email });
-            if (check == null) {
-                await newuser.save()
-                res.json(newuser);
+        upload(req, res, async (err) => {
+            if (err) {
+                console.log(err);
             } else {
-                return res.json({ msg: "Email already Registered" })
+                if (req.file) {
+                    req.body.url = '/' + req.file.path;
+                    try {
+                        let { fullname, email, password } = new User(req.body);
+                        let newuser = new User(req.body);
+                        let check = await User.findOne({ email });
+                        if (check == null) {
+                            await newuser.save()
+                            res.json(newuser);
+                        } else {
+                            return res.json({ msg: "Email already Registered" })
+                        }
+                    }
+                    catch (err) {
+                        res.status(500).send(err);
+                    }
+                }
             }
-        }
-        catch (err) {
-            res.status(500).send(err);
-        }
+        });
+
     });
+
+//     app.post('/register', async (req, res) => {
+//         try {
+//             let { fullname, email, password } = new User(req.body);
+//             let newuser = new User(req.body);
+//             let check = await User.findOne({ email });
+//             if (check == null) {
+//                 await newuser.save()
+//                 res.json(newuser);
+//             } else {
+//                 return res.json({ msg: "Email already Registered" })
+//             }
+//         }
+//         catch (err) {
+//             res.status(500).send(err);
+//         }
+//     });
 
     app.put("/login", async (req, res) => {
         try {
@@ -97,18 +97,18 @@ let routes = (app) => {
         }
     });
 
-    app.put("/user/:id", async (req, res) => {
-        try {
-            let update={req.body}
-            let user = await User.findOneAndUpdate({ _id: req.params.id },update,{returnOriginal:false});
-//             user.active = false;
-//             await user.save()
-            return res.json(user)
-        }
-        catch (err) {
-            res.status(500).send(err)
-        }
-    });
+//     app.put("/user/:id", async (req, res) => {
+//         try {
+//             let update={req.body}
+//             let user = await User.findOneAndUpdate({ _id: req.params.id },update,{returnOriginal:false});
+// //             user.active = false;
+// //             await user.save()
+//             return res.json(user)
+//         }
+//         catch (err) {
+//             res.status(500).send(err)
+//         }
+//     });
 
     app.get("/users/:id", async (req, res) => {
         try {
