@@ -64,8 +64,22 @@ let routes = (app) => {
             if (user == null) {
                 return res.json({ msg: "Invalid email or password" })
             } else {
-//                 user.active = true;
-//                 await user.save()
+                res.json(user)
+            }
+        }
+        catch (err) {
+            res.status(500).send(err)
+        }
+    });
+    
+    app.put("/logout", async (req, res) => {
+        try {
+            let { email, password } = req.body;
+            let update ={active: false};
+            let user = await User.findOneAndUpdate({ email, password }, update, {returnOriginal: false});
+            if (user == null) {
+                return res.json({ msg: "Invalid email or password" })
+            } else {
                 res.json(user)
             }
         }
