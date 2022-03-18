@@ -1,14 +1,14 @@
 let User = require("../../models/users");
-const multer = require('multer');
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, './uploads/')
-    },
-    filename: function (req, file, cb) {
-        cb(null, new Date().getMilliseconds() + file.originalname);
-    }
-});
-const upload = multer({ storage: storage }).single('url');
+// const multer = require('multer');
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, './uploads/')
+//     },
+//     filename: function (req, file, cb) {
+//         cb(null, new Date().getMilliseconds() + file.originalname);
+//     }
+// });
+// const upload = multer({ storage: storage }).single('url');
 
 let routes = (app) => {
 //     app.post('/register', async (req, res) => {
