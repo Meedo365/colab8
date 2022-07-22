@@ -7,7 +7,7 @@ const UserSchema = new mongoose.Schema({
     facebookUrl: { type: String, required: false },
     twitterUrl: { type: String, required: false },
     instagramUrl: { type: String, required: false },
-    intrest: { type: String, required: true },
+    intrest: { type: Array, required: true },
     funFacts: { type: String, required: true },
      image: { type: String, required: false },
     age: { type: String, required: false },
