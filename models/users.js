@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema({
     intrest: { type: Array, required: true },
     funFacts: { type: String, required: true },
      image: { type: String, required: false },
-    age: { type: String, required: false },
+    age: { type: Date, required: false },
     gender: { type: String, required: false },
     active: { type: Boolean, default: false }
 },
