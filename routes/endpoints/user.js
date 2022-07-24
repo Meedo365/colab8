@@ -108,7 +108,7 @@ let routes = (app) => {
         catch (err) {
             res.status(500).send(err)
         }
-//     });
+    });
 
     app.get("/users/:id", async (req, res) => {
         try {
