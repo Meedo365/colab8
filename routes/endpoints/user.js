@@ -97,11 +97,10 @@ let routes = (app) => {
         }
     });
 
-    app.put('/user/:id', async (req, res) => {
+    app.put('/user/update/:id', async (req, res) => {
         try {
             let update = req.body;
             let user = await User.updateOne({ _id: req.params.id },update,{returnOriginal:false});
-//             user.active = false;
             await user.save()
             return res.json(user)
         }
