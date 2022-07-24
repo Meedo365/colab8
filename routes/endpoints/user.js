@@ -97,7 +97,7 @@ let routes = (app) => {
         }
     });
 
-    app.put('/user/update/:id', async (req, res) => {
+    app.put('/user/:id', async (req, res) => {
         try {
             let update = req.body;
             let user = await User.updateOne({ _id: req.params.id },update,{returnOriginal:false});
@@ -105,7 +105,9 @@ let routes = (app) => {
             return res.json(user)
         }
         catch (err) {
+        console.log("operation was not successful")
             res.status(500).send(err)
+            throw error
         }
     });
 
