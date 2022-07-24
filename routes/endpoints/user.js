@@ -54,6 +54,18 @@ let routes = (app) => {
             res.status(500).send(err);
         }
     });
+    
+    app.put('/user/:id', async (req, res) => {
+        try {
+            let update = req.body;
+            let user = await User.updateOne({ _id: req.params.id }, update, { returnOriginal: false });
+            return res.json(user)
+        }
+        catch (err) {
+            res.status(500).send(err)
+            throw err
+        }
+    });
 
     app.put("/login", async (req, res) => {
         try {
@@ -97,19 +109,9 @@ let routes = (app) => {
         }
     });
 
-       app.put('/user/:id', async (req, res) => {
-        try {
-            let update = req.body;
-            let user = await User.updateOne({ _id: req.params.id }, update, { returnOriginal: false });
-            return res.json(user)
-        }
-        catch (err) {
-            res.status(500).send(err)
-            throw err
-        }
-    });
 
-    app.get("/users/:id", async (req, res) => {
+
+    app.get("/user/:id", async (req, res) => {
         try {
             let user = await User.findOne({ _id: req.params.id });
             res.json(user)
