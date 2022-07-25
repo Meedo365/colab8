@@ -66,13 +66,15 @@ let routes = (app) => {
         res.json(eventt)
     });
 
-    // app.put("/event/:id/comments", async (req, res) => {
-    //     let comments = await Comment.find({ eventt_id: req.params.id })
-    //     Eventt.comment_no = comments.length;
-    //     let result = Eventt.comment_no;
-    //     await Eventt.save()
-    //     res.send(result)
-    // });
+    app.delete("/event/:id", async (req, res) => {
+        try {
+            let event = await Eventt.deleteOne({ _id: req.params.id });
+            res.json(event)
+        }
+        catch (err) {
+            res.status(500).send(err)
+        }
+    });
 
 }
 
