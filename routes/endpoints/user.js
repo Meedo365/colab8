@@ -11,48 +11,30 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage }).single('url');
 
 let routes = (app) => {
-//     app.post('/register', async (req, res) => {
-//         upload(req, res, async (err) => {
-//             if (err) {
-//                 console.log(err);
-//             } else {
-//                 if (req.file) {
-//                     req.body.url = '/' + req.file.path;
-//                     try {
-//                         let { fullname, email, password } = new User(req.body);
-//                         let newuser = new User(req.body);
-//                         let check = await User.findOne({ email });
-//                         if (check == null) {
-//                             await newuser.save()
-//                             res.json(newuser);
-//                         } else {
-//                             return res.json({ msg: "Email already Registered" })
-//                         }
-//                     }
-//                     catch (err) {
-//                         res.status(500).send(err);
-//                     }
-//                 }
-//             }
-//         });
-
-//     });
-
-    app.post('/register', async (req, res) => {
-        try {
-            let { fullname, email, password } = new User(req.body);
-            let newuser = new User(req.body);
-            let check = await User.findOne({ email });
-            if (check == null) {
-                await newuser.save()
-                res.json(newuser);
+app.post('/register', async (req, res) => {
+        upload(req, res, async (err) => {
+            if (err) {
+                console.log(err);
             } else {
-                return res.json({ msg: "Email already Registered" })
+                if (req.file) {
+                    req.body.image = '/' + req.file.path;
+                    try {
+                        let { fullname, email, password } = new User(req.body);
+                        let newuser = new User(req.body);
+                        let check = await User.findOne({ email });
+                        if (check == null) {
+                            await newuser.save()
+                            res.json(newuser);
+                        } else {
+                            return res.json({ msg: "Email already Registered" })
+                        }
+                    }
+                    catch (err) {
+                        res.status(500).send(err);
+                    }
+                }
             }
-        }
-        catch (err) {
-            res.status(500).send(err);
-        }
+        });
     });
     
     app.put('/user/:id', async (req, res) => {
