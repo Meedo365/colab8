@@ -16,7 +16,7 @@ let routes = (app) => {
 
     app.get('/events', async (req, res) => {
         try {
-            let eventt = await Eventt.find();
+            let eventt = await Eventt.find().sort({date: 1});
             res.json(eventt);
         }
         catch (err) {
