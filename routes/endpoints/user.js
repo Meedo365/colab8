@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage }).single('image');
 
 let routes = (app) => {
-app.post('/register', async (req, res) => {
+        app.post('/register', async (req, res) => {
         upload(req, res, async (err) => {
             if (err) {
                 console.log(err);
@@ -35,7 +35,6 @@ app.post('/register', async (req, res) => {
                 }
             }
         });
-    });
     
     app.put('/user/:id', async (req, res) => {
         try {
