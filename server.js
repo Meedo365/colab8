@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 // const PORT = 6600;
-const cors = require('cors');
+// const cors = require('cors');
 const port = process.env.PORT || 3000;
 const routes = require('./routes');
 const path = require('path');
@@ -20,10 +20,10 @@ mongoose.connection.on('error', (err) => console.log(err));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+// app.use(cors());
 app.use(routes);
 
-// app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static('uploads'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
