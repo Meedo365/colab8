@@ -8,7 +8,7 @@ const storage = multer.diskStorage({
         cb(null, new Date().getMilliseconds() + file.originalname);
     }
 });
-const upload = multer({ storage: storage }).single('url');
+const upload = multer({ storage: storage }).single('image');
 
 let routes = (app) => {
 app.post('/register', async (req, res) => {
