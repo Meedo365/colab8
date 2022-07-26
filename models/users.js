@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
     instagramUrl: { type: String, required: false },
     intrest: { type: Array, required: true },
     funFacts: { type: String, required: true },
-     image: { type: String, required: false },
+    image: { type: String, required: false },
     age: { type: Date, required: false },
     gender: { type: String, required: false },
     active: { type: Boolean, default: false }
