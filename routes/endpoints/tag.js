@@ -43,6 +43,17 @@ let routes = (app) => {
             res.status(500).send(err)
         }
     });
+    
+    app.delete("/tag/:id", async (req, res) => {
+        try {
+            let tag = await Tag.deleteOne({ _id: req.params.id });
+            res.json(tag)
+        }
+        catch (err) {
+            res.status(500).send(err)
+        }
+    });
+    
 }
 
 module.exports = routes;
