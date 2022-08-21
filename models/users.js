@@ -14,21 +14,6 @@ const UserSchema = new mongoose.Schema({
     age: { type: Date, required: false },
     gender: { type: String, required: false },
     active: { type: Boolean, default: false }
-    // address: [
-    //     {
-    // _id:{id:false},
-    //         street: String,
-    //         city: { type: String },
-    //         country: {
-    //             type: String,
-    //             required: false
-    //         }
-    //     }
-    // ],
-    // tribe: {
-    //     type: String,
-    //     enum: ['Yoruba', 'Hausa', 'Igbo']
-    // }
 },
     { timestamps: true });
 
