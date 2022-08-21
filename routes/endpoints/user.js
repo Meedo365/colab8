@@ -64,7 +64,6 @@ let routes = (app) => {
                         }
                     }
                     catch (err) {
-                        console.log("here oooooo")
                         res.status(500).send(err);
                     }
                 }
