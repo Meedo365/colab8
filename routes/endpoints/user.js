@@ -46,14 +46,36 @@ let routes = (app) => {
         });
     });
 
+    // update dp
+    app.put('/profilepic/:id', async (req, res) => {
+        upload(req, res, async (err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                if (req.file) {
+                    req.body.image = '/' + req.file.path;
+                    try {
+                        let update = req.body;
+                        let user = await User.findOneAndUpdate({ _id: req.params.id }, update, { returnOriginal: false });
+                        return res.json(user)
+                    }
+                    catch (err) {
+                        res.status(500).send(err);
+                    }
+                }
+            }
+        });
+    });
+
     app.put("/login", async (req, res) => {
         try {
             const { email, password } = req.body;
-            const foundUser = await User.findAndValidate(email, password)
+            // const foundUser = await User.findAndValidate(email, password)
             // console.log(foundUser)
             let user = await User.findOne({ email });
             // if (user == null) {
-            if (foundUser) {
+            // if (foundUser) {
+            if (user) {
                 user.active = true;
                 await user.save()
                 res.json(user)

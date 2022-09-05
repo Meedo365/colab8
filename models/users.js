@@ -17,18 +17,18 @@ const UserSchema = new mongoose.Schema({
 },
     { timestamps: true });
 
-UserSchema.statics.findAndValidate = async function (email, password) {
-    const foundUser = await this.findOne({ email });
-    const isValid = await bcrypt.compare(password, foundUser.password);
-    return isValid ? foundUser : false;
-};
+// UserSchema.statics.findAndValidate = async function (email, password) {
+//     const foundUser = await this.findOne({ email });
+//     const isValid = await bcrypt.compare(password, foundUser.password);
+//     return isValid ? foundUser : false;
+// };
 
 
-UserSchema.pre('save', async function (next) {
-    if (!this.isModified('password')) return next();
-    this.password = await bcrypt.hash(this.password, 12);
-    next();
-});
+// UserSchema.pre('save', async function (next) {
+//     if (!this.isModified('password')) return next();
+//     this.password = await bcrypt.hash(this.password, 12);
+//     next();
+// });
 
 const User = mongoose.model('users', UserSchema);
 

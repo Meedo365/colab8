@@ -7,9 +7,9 @@ const cors = require('cors');
 const routes = require('./routes');
 const path = require('path');
 // offline
-// const CONNECTION_STRING = "mongodb://localhost:27017/colab";
+const CONNECTION_STRING = "mongodb://localhost:27017/colab";
 // online
-const CONNECTION_STRING = "mongodb+srv://mycolab8project:Colab888@cluster0.diclp.mongodb.net/colab";
+// const CONNECTION_STRING = "mongodb+srv://mycolab8project:Colab888@cluster0.diclp.mongodb.net/colab";
 
 mongoose.connect(CONNECTION_STRING, {
 	useNewUrlParser: true,
